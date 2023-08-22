@@ -1,5 +1,5 @@
 // use adapter-auto for zero config deployment to Vercel, adapter-static for Github Pages
-// import adapter from '@sveltejs/adapter-auto';
+// import adapter from "@sveltejs/adapter-auto";
 // import preprocess from "svelte-preprocess";
 // import { vitePreprocess } from "@sveltejs/kit/vite";
 import adapter from "@sveltejs/adapter-static";
@@ -13,7 +13,9 @@ const dev = process.argv.includes("dev");
 const config = {
 	preprocess: sequence([vitePreprocess(), preprocessMeltUI()]),
 	kit: {
-		adapter: adapter(),
+		adapter: adapter({
+			fallback: "404.html", // may differ from host to host
+		}),
 	},
 	vitePlugin: {
 		inspector: {
